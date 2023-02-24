@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>SSAFY Students</title>
+</head>
+<body>
+<form th:method="post" th:action th:object="${form}" class="container border p-5">
+    <div class="mb-3">
+        <label for="studentsForm" class="form-label">인원 추가</label>
+        <textarea th:field="*{names}" class="form-control" id="studentsForm" rows="3" placeholder="여러명 등록을 위해 콤마(,)로 구분해주세요. ex) 김싸피,이싸피,박싸피"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">추가</button>
+</form>
+</body>
+</html>
