@@ -29,9 +29,12 @@ public class TeamController {
     }
 
     @GetMapping("/maker")
-    public String teamMaker(@RequestParam(defaultValue = "5") Integer teamCount, Model model) {
+    public String teamMaker(
+            @RequestParam(defaultValue = "1") Integer searchType,
+            @RequestParam(defaultValue = "0") Integer count,
+            Model model) {
         log.debug("StudentController#indexPage");
-        List<List<Student>> teams = service.makeTeam(teamCount, new ArrayList<>());
+        List<List<Student>> teams = service.makeTeam(searchType, count, new ArrayList<>());
         model.addAttribute("teams", teams);
         return "team-maker";
     }

@@ -18,14 +18,20 @@
         </div>
         <div class="crol-md-7 col-lg-8">
             <h4 class="mb-3">Billing address</h4>
-            <div>
-                <form class="form-inline">
-                    <div class="form-group mb-2">
-                        <input type="text" id="teamCount" name="teamCount" class="form-control" placeholder="팀수"/>
+            <div class="d-flex justify-content-end">
+                <form class="row g-3">
+                    <div class="col-auto">
+                        <select id="searchType" name="searchType" class="form-select" aria-label="select">
+                            <option value="1" selected>팀수</option>
+                            <option value="2">팀원수</option>
+                        </select>
                     </div>
-<!--                    <div class="form-group mx-sm-1 mb-2">-->
-<!--                    </div>-->
-                    <button type="submit" class="btn btn-primary mb-2">검색</button>
+                    <div class="col-auto">
+                        <input type="text" id="count" name="count" class="form-control" placeholder="0"/>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-2">검색</button>
+                    </div>
                 </form>
             </div>
             <table class="table table-hover">
