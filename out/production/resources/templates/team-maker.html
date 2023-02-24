@@ -12,8 +12,9 @@
     <div class="row g-5">
         <div class="col-md-5 col-lg-4 order-md-last">
             <h4 class="mb-3">제외인원</h4>
-            <div th:each="student : ${students}">
-                <h5 th:text="${student.name}"></h5>
+            <div th:each="student : ${students}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="*{students}" th:value="${student.id}" class="form-check-input">
+                <label th:for="${#ids.next('students')}" th:text="${student.name}" class="form-check-label"></label>
             </div>
         </div>
         <div class="crol-md-7 col-lg-8">
