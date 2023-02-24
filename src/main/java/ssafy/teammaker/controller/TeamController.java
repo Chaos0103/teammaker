@@ -6,13 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 import ssafy.teammaker.domain.Student;
 import ssafy.teammaker.service.StudentService;
 import ssafy.teammaker.service.TeamService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -29,12 +26,10 @@ public class TeamController {
     }
 
     @GetMapping("/maker")
-    public String teamMaker(
-            @RequestParam(defaultValue = "1") Integer searchType,
-            @RequestParam(defaultValue = "0") Integer count,
-            Model model) {
+    public String teamMaker(@ModelAttribute("form") TeamMakerForm form, Model model) {
         log.debug("StudentController#indexPage");
-        List<List<Student>> teams = service.makeTeam(searchType, count, new ArrayList<>());
+        log.debug("form={}", form);
+        List<List<Student>> teams = service.makeTeam(form.getSearchType(), form.getCount(), form.getExclusionsIds());
         model.addAttribute("teams", teams);
         return "team-maker";
     }

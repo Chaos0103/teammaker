@@ -10,31 +10,32 @@
 <body>
 <div class="container border">
     <div class="row g-5">
-        <div class="col-md-5 col-lg-4 order-md-last">
-            <h4 class="mb-3">제외인원</h4>
-            <div th:each="student : ${students}" class="form-check form-check-inline">
-                <input type="checkbox" th:field="*{students}" th:value="${student.id}" class="form-check-input">
-                <label th:for="${#ids.next('students')}" th:text="${student.name}" class="form-check-label"></label>
-            </div>
-        </div>
-        <div class="crol-md-7 col-lg-8">
-            <h4 class="mb-3">Billing address</h4>
+        <form class="col-md-5 col-lg-4 order-md-last" th:object="${form}">
             <div class="d-flex justify-content-end">
-                <form class="row g-3">
+                <div class="row g-3">
                     <div class="col-auto">
-                        <select id="searchType" name="searchType" class="form-select" aria-label="select">
+                        <select th:field="*{searchType}" class="form-select" aria-label="select">
                             <option value="1" selected>팀수</option>
                             <option value="2">팀원수</option>
                         </select>
                     </div>
                     <div class="col-auto">
-                        <input type="text" id="count" name="count" class="form-control" placeholder="0"/>
+                        <input type="text" th:field="*{count}" value="0" class="form-control" placeholder="0"/>
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary mb-2">검색</button>
                     </div>
-                </form>
+                </div>
             </div>
+            <h4 class="mb-3">제외인원</h4>
+            <div th:each="student : ${students}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="*{exclusionsIds}" th:value="${student.id}" class="form-check-input">
+                <label th:for="${#ids.next('students')}" th:text="${student.name}" class="form-check-label"></label>
+            </div>
+        </form>
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Billing address</h4>
+
             <table class="table table-hover">
                 <thead>
                 <tr>
