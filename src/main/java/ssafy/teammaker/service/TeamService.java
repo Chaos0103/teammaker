@@ -18,16 +18,16 @@ public class TeamService {
         if (count == 0) {
             return new ArrayList<>();
         }
+
         GenerateTeam generateTeam = new GenerateTeam();
         List<Student> findStudents = studentRepository.findStudents(exclusionIds);
 
-        List<List<Student>> res = new ArrayList<>();
         if (searchType == 1) {
-            res = generateTeam.makeTeamByTeamCount(count, findStudents);
+            return generateTeam.makeTeamByTeamCount(count, findStudents);
         } else if (searchType == 2) {
-            res = generateTeam.makeTeamByMemberCount(count, findStudents);
+            return generateTeam.makeTeamByMemberCount(count, findStudents);
         }
 
-        return res;
+        throw new IllegalStateException();
     }
 }
