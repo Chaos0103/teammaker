@@ -10,6 +10,8 @@ public interface StudentRepository {
 
     List<Student> findAll();
 
+    List<Student> findStudents(List<Long> exclusionsId);
+
     void remove(Long id);
 
     void removeAll();

@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ssafy.teammaker.repository.Constant.*;
 
@@ -30,6 +31,13 @@ public class MemoryStudentRepository implements StudentRepository {
     @Override
     public List<Student> findAll() {
         return new ArrayList<>(store.values());
+    }
+
+    @Override
+    public List<Student> findStudents(List<Long> exclusionsId) {
+        return new ArrayList<>(store.values()).stream()
+                .filter(student -> !exclusionsId.contains(student.getId()))
+                .collect(Collectors.toList());
     }
 
     @Override

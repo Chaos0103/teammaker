@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 import ssafy.teammaker.domain.Student;
 import ssafy.teammaker.repository.StudentRepository;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -14,12 +15,12 @@ public class TeamService {
 
     private final StudentRepository studentRepository;
 
-    public List<List<Student>> makeTeam(int searchType, int count, List<Long> exclusions) {
+    public List<List<Student>> makeTeam(int searchType, int count, List<Long> exclusionIds) {
         if (count == 0) {
             return new ArrayList<>();
         }
 
-        List<Student> findStudents = findStudents(exclusions);
+        List<Student> findStudents = studentRepository.findStudents(exclusionIds);
 
         List<List<Student>> res = new ArrayList<>();
         if (searchType == 1) {
@@ -55,7 +56,6 @@ public class TeamService {
     }
 
     private List<List<Student>> makeTeamByMemberCount(int count, List<Student> students) {
-        // TODO: 2023-02-24 팀원수 예외 잡기
         Random random = new Random();
 
         List<List<Student>> res = new ArrayList<>();
@@ -67,7 +67,6 @@ public class TeamService {
 
         int teamIndex = 0;
         int memberCount = 0;
-        System.out.println("students.size() = " + students.size());
         while (memberCount < students.size()) {
             int studentIndex = random.nextInt(students.size());
             if (picked[studentIndex]) {
@@ -75,8 +74,6 @@ public class TeamService {
             }
             res.get(teamIndex).add(students.get(studentIndex));
             memberCount++;
-            System.out.println("memberCount = " + memberCount);
-            System.out.println("teamIndex = " + teamIndex);
             if (memberCount % count == 0) {
                 teamIndex++;
             }
@@ -84,11 +81,5 @@ public class TeamService {
         }
 
         return res;
-    }
-
-    private List<Student> findStudents(List<Long> exclusions) {
-        return studentRepository.findAll().stream()
-                .filter(student -> !exclusions.contains(student.getId()))
-                .collect(Collectors.toList());
     }
 }
