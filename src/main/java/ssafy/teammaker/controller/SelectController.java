@@ -27,12 +27,16 @@ public class SelectController {
 
     @GetMapping("/lottery")
     public String selectStudent(@ModelAttribute("form") SelectForm form, Model model) {
-        Student findStudent = selectService.findRandomOneStudent(form.getExclusionIds(), form.getHidden());
+        log.debug("form={}", form);
 
-        if (form.getHidden() != null) {
-            form.setHidden(form.getHidden() + findStudent.getId() + ",");
+        if (form.isFirst()) {
+            form.setFirst(false);
+            model.addAttribute("student", null);
+            return "select";
         }
 
+        Student findStudent = selectService.findRandomOneStudent(form.getExclusionIds(), form.getHidden());
+        form.setHidden(form.getHidden() + findStudent.getId() + ",");
         model.addAttribute("student", findStudent);
         return "select";
     }

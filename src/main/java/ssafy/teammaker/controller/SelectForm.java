@@ -9,10 +9,12 @@ import java.util.List;
 public class SelectForm {
 
     private List<Long> exclusionIds;
-    private String hidden = "";
+    private String hidden;
+    private boolean isFirst;
 
     public SelectForm() {
         this.exclusionIds = new ArrayList<>();
         this.hidden = "";
+        this.isFirst = true;
     }
 }

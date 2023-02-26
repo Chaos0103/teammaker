@@ -17,7 +17,10 @@ public class SelectService {
     public Student findRandomOneStudent(List<Long> exclusionIds, String hidden) {
         if (!hidden.isEmpty()) {
             for (String id : hidden.split(",")) {
-                exclusionIds.add(Long.parseLong(id));
+                Long studentId = Long.parseLong(id);
+                if (!exclusionIds.contains(studentId)) {
+                    exclusionIds.add(studentId);
+                }
             }
         }
 
