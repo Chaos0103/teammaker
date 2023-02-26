@@ -12,15 +12,8 @@
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <img class="bi me-2" width="40" height="32" src="/img/ssafy-logo.png">
-            <span class="fs-4">SSAFY</span>
+            <span class="fs-4">팀 생성기</span>
         </a>
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-        </ul>
     </header>
 </div>
 <div class="container">
@@ -40,14 +33,14 @@
                     <button type="submit" class="btn btn-primary mb-2">검색</button>
                 </div>
             </div>
-            <h4 class="mb-3">제외인원</h4>
+            <h4 class="mb-3 mt-3">제외인원</h4>
             <div th:each="student : ${students}" class="form-check form-check-inline">
                 <input type="checkbox" th:field="*{exclusionsIds}" th:value="${student.id}" class="form-check-input">
                 <label th:for="${#ids.prev('exclusionsIds')}" th:text="${student.name}" class="form-check-label"></label>
             </div>
         </form>
         <div class="col-md-7 col-lg-8">
-            <h2 class="mb-3">팀 생성기</h2>
+            <h1 class="mb-3">팀 생성 결과</h1>
             <table class="table table-hover">
                 <thead>
                 <tr>

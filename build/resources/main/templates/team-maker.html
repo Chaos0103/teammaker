@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <!-- bootstrap -->
@@ -8,13 +8,53 @@
     <title>SSAFY</title>
 </head>
 <body>
-<div class="container border">
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <img class="bi me-2" width="40" height="32" src="/img/ssafy-logo.png">
+            <span class="fs-4">팀 생성기</span>
+        </a>
+    </header>
+</div>
+<div class="container">
     <div class="row g-5">
-        <div class="col-md-5 col-lg-4 order-md-last">
-            <h4 class="mb-3">제외인원</h4>
-        </div>
-        <div class="crol-md-7 col-lg-8">
-            <h4 class="mb-3">Billing address</h4>
+        <form class="col-md-5 col-lg-4 order-md-last" th:object="${form}">
+            <div class="row g-3">
+                <div class="col-auto">
+                    <select th:field="*{searchType}" class="form-select" aria-label="select">
+                        <option value="1" selected>팀수</option>
+                        <option value="2">팀원수</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <input type="text" th:field="*{count}" value="0" class="form-control" placeholder="0"/>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-2">검색</button>
+                </div>
+            </div>
+            <h4 class="mb-3 mt-3">제외인원</h4>
+            <div th:each="student : ${students}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="*{exclusionsIds}" th:value="${student.id}" class="form-check-input">
+                <label th:for="${#ids.prev('exclusionsIds')}" th:text="${student.name}" class="form-check-label"></label>
+            </div>
+        </form>
+        <div class="col-md-7 col-lg-8">
+            <h1 class="mb-3">팀 생성 결과</h1>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="team : ${teams}">
+                    <th scope="row" th:text="${teamStat.count}">1</th>
+                    <td th:each="student : ${team}"><p th:text="${student.name}"></p></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

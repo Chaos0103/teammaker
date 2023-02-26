@@ -14,22 +14,13 @@
             <img class="bi me-2" width="40" height="32" src="/img/ssafy-logo.png">
             <span class="fs-4">랜덤 추첨</span>
         </a>
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-        </ul>
     </header>
 </div>
 <div class="container">
     <div class="row g-5">
         <form class="col-md-5 col-lg-4 order-md-last" th:object="${form}">
-            <div class="row g-3">
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-2">검색</button>
-                </div>
+            <div class="d-grid gap-2 mb-2">
+                <button class="btn btn-secondary" type="submit">추첨</button>
             </div>
             <h4 class="mb-3">제외인원</h4>
             <div th:each="student : ${students}" class="form-check form-check-inline">
@@ -37,12 +28,18 @@
                 <label th:for="${#ids.prev('exclusionIds')}" th:text="${student.name}" class="form-check-label"></label>
             </div>
             <input type="hidden" th:field="*{hidden}">
+            <input type="hidden" th:field="*{first}">
         </form>
         <div class="col-md-7 col-lg-8">
-            <h2 class="mb-3">랜덤 추첨</h2>
+            <h1 class="mb-5">랜덤 추첨 결과</h1>
             <div class="position-relative">
                 <div class="position-absolute top-50 start-50 translate-middle">
-                    <h1 th:text="${student.name}" class="container border"></h1>
+                    <div class="card text-center mb-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h1 class="card-title" th:text="${student == null} ? '결과' : ${student.name}">s</h1>
+<!--                            <h1 th:if="${student == null} ? 'null' : ${student.name}"></h1>-->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
