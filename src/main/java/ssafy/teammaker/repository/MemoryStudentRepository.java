@@ -32,7 +32,7 @@ public class MemoryStudentRepository implements StudentRepository {
     @Override
     public Optional<Student> findById(Long studentId) {
         Student student = store.getOrDefault(studentId, null);
-        return Optional.of(student);
+        return Optional.ofNullable(student);
     }
 
     @Override
