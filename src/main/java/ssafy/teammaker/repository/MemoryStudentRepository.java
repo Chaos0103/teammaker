@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ssafy.teammaker.repository.Constant.*;
@@ -26,6 +27,12 @@ public class MemoryStudentRepository implements StudentRepository {
     public Long save(String name) {
         store.put(++instance, new Student(instance, name));
         return instance;
+    }
+
+    @Override
+    public Optional<Student> findById(Long studentId) {
+        Student student = store.getOrDefault(studentId, null);
+        return Optional.of(student);
     }
 
     @Override
