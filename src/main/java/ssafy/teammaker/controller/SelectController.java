@@ -25,7 +25,7 @@ public class SelectController {
         return studentService.findStudents();
     }
 
-    @GetMapping("/lottery")
+    @GetMapping("/random")
     public String selectStudent(@ModelAttribute("form") SelectForm form, Model model) {
         log.debug("form={}", form);
 

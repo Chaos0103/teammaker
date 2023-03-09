@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>SSAFY</title>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <img class="bi me-2" width="40" height="32" src="img/ssafy-logo.png">
+            <span class="fs-4">팀 생성기</span>
+        </a>
+    </header>
+</div>
+<div class="container">
+    <div class="row g-5">
+        <div class='col-md-5 col-lg-4 order-md-last ps-5'>
+            <table class="table text-center">
+                <thead>
+                <tr>
+                    <th scope="col">등급</th>
+                    <th scope="col">확률</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="rate : ${rates}">
+                    <td th:text="|${rateStat.count}등급|">1등급</td>
+                    <td th:text="|${#numbers.formatDecimal(rate * 100, 3, 2)}%|">1.00%</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table text-center">
+                <thead>
+                <tr>
+                    <th scope="col">순서</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">상품</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>1</th>
+                    <td>김싸피</td>
+                    <td>대기중</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <button type="button" class="btn btn-primary btn-lg">업그레이드 시도</button>
+                </div>
+                <div>
+                    <h5 class="mb-3 text-center">현재 등급</h5>
+                    <div><img src="img/grade-1.svg" alt=""></div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary btn-lg">현재 등급에서 교환</button>
+                </div>
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th><img src="img/grade-1.svg" alt="" width='75px'></th>
+                    <td>
+                        <div class="card" style="width: 8rem;">
+                            <img src="http://placehold.it/300x250" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card" style="width: 8rem;">
+                            <img src="http://placehold.it/300x250" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card" style="width: 8rem;">
+                            <img src="http://placehold.it/300x250" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card" style="width: 8rem;">
+                            <img src="http://placehold.it/300x250" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card" style="width: 8rem;">
+                            <img src="http://placehold.it/300x250" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
